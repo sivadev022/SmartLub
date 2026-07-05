@@ -1,96 +1,78 @@
 # SmartLub
 
-SmartLub is a Spring Boot job management project built with MVC, Thymeleaf, PostgreSQL and Bootstrap 5. It is designed as a strong Java full stack fresher portfolio project with clean CRUD screens, validation, search, filters, pagination, sorting and REST APIs.
+SmartLub is a full-stack job management web application built with Spring Boot, Thymeleaf, PostgreSQL, and Bootstrap. It gives users a clean interface to create, browse, search, filter, update, and manage job listings, with a dashboard and REST API included.
 
-## Tech Stack
+**Live Demo:** https://smartlub.onrender.com/
 
-- Java 21
-- Spring Boot
-- Spring MVC
-- Spring Data JPA
-- PostgreSQL
-- Thymeleaf
-- Bootstrap 5
-- Lombok
-- Hibernate
-- Maven
+![Java](https://img.shields.io/badge/Java-21-blue)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.6-brightgreen)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791)
+![Thymeleaf](https://img.shields.io/badge/View-Thymeleaf-005F0F)
+![Docker](https://img.shields.io/badge/Deploy-Docker-2496ED)
+
+## Overview
+
+SmartLub is designed as a polished Java full-stack portfolio project. It combines server-rendered MVC pages with a REST API, persistent PostgreSQL storage, validation, pagination, sorting, search, and deployment-ready Docker configuration.
+
+The application is currently deployed on Render and uses Neon PostgreSQL for cloud database hosting.
 
 ## Features
 
-- Create, update, delete and view jobs
-- Search jobs by title, company, location and skill
+- Add, edit, delete, and view job listings
+- Search jobs by title, company, location, and skill
 - Filter jobs by job type and minimum experience
-- Sort jobs by posted date, salary, experience and title
-- Pagination for job listing
-- Dashboard statistics
-- Form validation with friendly messages
-- Global exception handling
+- Sort jobs by posted date, salary, experience, and title
+- Paginated job listing page
+- Dashboard with job statistics
+- Form validation with user-friendly error messages
 - REST API for job management
-- Responsive Bootstrap UI
-- Empty state, success alerts and error pages
+- Responsive Bootstrap 5 UI
+- Custom 404 and 500 error pages
+- PostgreSQL persistence with Spring Data JPA
+- Docker-ready deployment setup
 
-## Folder Structure
+## Tech Stack
 
-```text
-src/main/java/com/sivaram/internhub
-├── config
-├── controller
-├── dto
-├── entity
-├── exception
-├── repository
-├── service
-└── util
+| Layer | Technology |
+| --- | --- |
+| Backend | Java 21, Spring Boot 3.3.6 |
+| Web | Spring MVC, Thymeleaf |
+| Database | PostgreSQL |
+| ORM | Spring Data JPA, Hibernate |
+| UI | Bootstrap 5, CSS, JavaScript |
+| Build Tool | Maven |
+| Deployment | Docker, Render |
+| Cloud Database | Neon PostgreSQL |
 
-src/main/resources
-├── static
-│   ├── css
-│   ├── images
-│   └── js
-├── templates
-└── application.properties
-```
+## Live Routes
 
-## Database Setup
-
-Create a PostgreSQL database named `internhub`.
-
-```sql
-CREATE DATABASE internhub;
-```
-
-Update environment variables if your local PostgreSQL credentials are different.
-
-```bash
-export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/internhub
-export SPRING_DATASOURCE_USERNAME=postgres
-export SPRING_DATASOURCE_PASSWORD=postgres
-```
-
-## Run Locally
-
-```bash
-mvn spring-boot:run
-```
-
-Open the application at:
-
-```text
-http://localhost:8080
-```
+| Page | URL |
+| --- | --- |
+| Home | `/` |
+| Jobs | `/jobs` |
+| Add Job | `/jobs/add` |
+| Dashboard | `/dashboard` |
+| About | `/about` |
+| Contact | `/contact` |
 
 ## REST API
 
+Base path:
+
 ```text
-GET    /api/jobs
-GET    /api/jobs/all
-GET    /api/jobs/{id}
-POST   /api/jobs
-PUT    /api/jobs/{id}
-DELETE /api/jobs/{id}
+/api/jobs
 ```
 
-Sample request body:
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| GET | `/api/jobs` | Get paginated and filtered jobs |
+| GET | `/api/jobs/all` | Get all jobs |
+| GET | `/api/jobs/{id}` | Get job by ID |
+| POST | `/api/jobs` | Create a new job |
+| PUT | `/api/jobs/{id}` | Update a job |
+| DELETE | `/api/jobs/{id}` | Delete a job |
+
+Sample request:
 
 ```json
 {
@@ -106,75 +88,75 @@ Sample request body:
 }
 ```
 
-## Screenshots
-
-Add screenshots in `src/main/resources/static/images` and update these placeholders after running the app.
+## Project Structure
 
 ```text
-Home Page Screenshot
-Dashboard Screenshot
-Jobs Page Screenshot
-Add Job Screenshot
-Job Details Screenshot
+src/main/java/com/sivaram/internhub
+|-- config
+|-- controller
+|-- dto
+|-- entity
+|-- exception
+|-- repository
+|-- service
+`-- util
+
+src/main/resources
+|-- static
+|   |-- css
+|   |-- images
+|   `-- js
+|-- templates
+`-- application.properties
 ```
 
-## Deployment
+## Run Locally
 
-The cleanest deployment path for this repo is Docker + PostgreSQL. The repo includes:
+### Prerequisites
 
-- `Dockerfile` for building and running the Spring Boot app
-- `docker-entrypoint.sh` for converting platform PostgreSQL URLs into Spring JDBC URLs
-- `render.yaml` for Render Blueprint deployment with a managed PostgreSQL database
+- Java 21
+- Maven
+- PostgreSQL
 
-### Deploy on Render
+### Database Setup
 
-1. Push this repository to GitHub:
+Create a local PostgreSQL database:
+
+```sql
+CREATE DATABASE internhub;
+```
+
+Set environment variables:
 
 ```bash
-git add .
-git commit -m "Add deployment configuration"
-git push origin main
+export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/internhub
+export SPRING_DATASOURCE_USERNAME=postgres
+export SPRING_DATASOURCE_PASSWORD=postgres
 ```
 
-2. In Render, create a new Blueprint and select:
+Start the application:
+
+```bash
+mvn spring-boot:run
+```
+
+Open:
 
 ```text
-https://github.com/sivadev022/SmartLub.git
+http://localhost:8080
 ```
 
-3. Render will read `render.yaml`, create:
+## Docker
 
-```text
-smartlub      - Docker web service
-smartlub-db   - PostgreSQL database
-```
-
-4. After the first deploy finishes, open the Render service URL.
-
-The app reads the port from Render's `PORT` environment variable and the database credentials from the Blueprint.
-
-### Deploy with Neon + Any Java Host
-
-If your host does not use `render.yaml`, create a PostgreSQL database in Neon and set these environment variables:
-
-```bash
-SPRING_DATASOURCE_URL=jdbc:postgresql://HOST:PORT/DATABASE?sslmode=require
-SPRING_DATASOURCE_USERNAME=YOUR_DATABASE_USER
-SPRING_DATASOURCE_PASSWORD=YOUR_DATABASE_PASSWORD
-PORT=8080
-```
-
-Then build and run:
-
-```bash
-mvn clean package -DskipTests
-java -jar target/internhub-0.0.1-SNAPSHOT.jar
-```
-
-### Docker Run Locally
+Build the image:
 
 ```bash
 docker build -t smartlub .
+```
+
+Run the container:
+
+```bash
 docker run --rm -p 8080:8080 \
   -e SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/internhub \
   -e SPRING_DATASOURCE_USERNAME=postgres \
@@ -182,6 +164,40 @@ docker run --rm -p 8080:8080 \
   smartlub
 ```
 
+## Deployment
+
+The live deployment uses:
+
+- Render Web Service for the Spring Boot Docker app
+- Neon PostgreSQL for the database
+- GitHub auto-deploy from the `main` branch
+
+Required production environment variables:
+
+```env
+SPRING_DATASOURCE_URL=jdbc:postgresql://YOUR_NEON_HOST/YOUR_DATABASE?sslmode=require
+SPRING_DATASOURCE_USERNAME=YOUR_NEON_USERNAME
+SPRING_DATASOURCE_PASSWORD=YOUR_NEON_PASSWORD
+SPRING_JPA_HIBERNATE_DDL_AUTO=update
+SPRING_THYMELEAF_CACHE=true
+```
+
+Render should use:
+
+```text
+Runtime: Docker
+Branch: main
+Instance Type: Free
+Root Directory: empty
+```
+
+## Notes
+
+- Render free services may sleep after inactivity, so the first request can take a little longer.
+- Database credentials should only be stored as environment variables.
+- Do not commit `.env` files or database passwords to GitHub.
+
 ## Author
 
-Sivaram
+**Sivaram**  
+GitHub: [sivadev022](https://github.com/sivadev022)
