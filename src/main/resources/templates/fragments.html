@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" th:href="@{/}">SmartLub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/jobs}">Jobs</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
+            </ul>
+            <a class="btn btn-warning ms-lg-3" th:href="@{/jobs/add}">
+                <i class="bi bi-plus-circle"></i>
+                Add Job
+            </a>
+        </div>
+    </div>
+</nav>
+
+<footer th:fragment="footer" class="footer bg-dark text-white mt-auto py-4">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <div>
+            <strong>SmartLub</strong>
+            <span class="text-white-50">Spring Boot job portal project</span>
+        </div>
+        <div class="text-white-50">Built with Spring Boot, PostgreSQL, Thymeleaf and Bootstrap 5</div>
+    </div>
+</footer>
+
+<div th:fragment="alerts">
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i>
+        <span th:text="${successMessage}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        <span th:text="${errorMessage}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+</div>
+</body>
+</html>

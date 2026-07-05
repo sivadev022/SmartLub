@@ -1,0 +1,261 @@
+:root {
+    --brand: #0f766e;
+    --brand-dark: #134e4a;
+    --ink: #172033;
+    --soft: #f5f7fb;
+    --line: #e6eaf0;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background: var(--soft);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar-brand {
+    letter-spacing: 0;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(15, 32, 51, 0.78), rgba(15, 32, 51, 0.7)), url("/images/office.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.page-section {
+    padding: 48px 0;
+}
+
+.page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.narrow-container {
+    max-width: 980px;
+}
+
+.stat-card,
+.section-panel,
+.job-card,
+.form-panel,
+.feature-box,
+.contact-box {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(15, 32, 51, 0.06);
+}
+
+.stat-card {
+    padding: 28px;
+    height: 100%;
+}
+
+.stat-card i {
+    color: var(--brand);
+    font-size: 2rem;
+}
+
+.stat-card h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 12px 0 0;
+}
+
+.stat-card p {
+    color: #687386;
+    margin: 0;
+}
+
+.section-panel,
+.form-panel {
+    padding: 28px;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 750;
+    margin-bottom: 18px;
+}
+
+.filter-panel {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px;
+}
+
+.job-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.job-card h2,
+.job-mini-card h3 {
+    color: var(--ink);
+    font-size: 1.25rem;
+    font-weight: 750;
+    margin: 0 0 12px;
+}
+
+.company,
+.location {
+    color: #596579;
+    margin-bottom: 8px;
+}
+
+.skill-pill {
+    background: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    border-radius: 999px;
+    color: #166534;
+    font-size: 0.85rem;
+    padding: 6px 11px;
+}
+
+.job-meta {
+    border-top: 1px solid var(--line);
+    color: #344154;
+    display: flex;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.job-mini-card {
+    background: #f8fafc;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: inherit;
+    display: block;
+    height: 100%;
+    padding: 18px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-mini-card:hover {
+    box-shadow: 0 12px 28px rgba(15, 32, 51, 0.1);
+    transform: translateY(-2px);
+}
+
+.empty-state {
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 54px 24px;
+    text-align: center;
+}
+
+.empty-state i {
+    color: var(--brand);
+    font-size: 3rem;
+}
+
+.empty-state h1,
+.empty-state h2,
+.empty-state h3 {
+    font-weight: 800;
+    margin-top: 16px;
+}
+
+.details-header {
+    align-items: flex-start;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 28px;
+}
+
+.details-header h1 {
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.details-description {
+    color: #344154;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.summary-row {
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+}
+
+.summary-row:last-child {
+    border-bottom: 0;
+}
+
+.feature-box,
+.contact-box {
+    height: 100%;
+    padding: 22px;
+}
+
+.feature-box i,
+.contact-box i {
+    color: var(--brand);
+    font-size: 1.8rem;
+}
+
+.feature-box h2,
+.contact-box strong {
+    display: block;
+    font-size: 1.1rem;
+    margin: 12px 0 8px;
+}
+
+.contact-box span,
+.feature-box p {
+    color: #687386;
+}
+
+.btn-primary {
+    background: var(--brand);
+    border-color: var(--brand);
+}
+
+.btn-primary:hover {
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+}
+
+@media (max-width: 767px) {
+    .details-header,
+    .job-meta {
+        flex-direction: column;
+    }
+
+    .section-panel,
+    .form-panel,
+    .filter-panel,
+    .job-card {
+        padding: 20px;
+    }
+}

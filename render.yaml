@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: smartlub
+    runtime: docker
+    repo: https://github.com/sivadev022/SmartLub.git
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: smartlub-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: smartlub-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: smartlub-db
+          property: password
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_THYMELEAF_CACHE
+        value: "true"
+
+databases:
+  - name: smartlub-db
+    databaseName: internhub
+    user: smartlub_user
